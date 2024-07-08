@@ -44,22 +44,22 @@ public class FillingTests {
 //        Основные категории
         Category pizza = new Category();
         pizza.setName("Пицца");
-        pizza.setParentCategory(null);
+        pizza.setCategory(null);
         categoryRepository.save(pizza);
 
         Category rolls = new Category();
         rolls.setName("Роллы");
-        rolls.setParentCategory(null);
+        rolls.setCategory(null);
         categoryRepository.save(rolls);
 
         Category burgers = new Category();
         burgers.setName("Бургеры");
-        burgers.setParentCategory(null);
+        burgers.setCategory(null);
         categoryRepository.save(burgers);
 
         Category drinks = new Category();
         drinks.setName("Напитки");
-        drinks.setParentCategory(null);
+        drinks.setCategory(null);
         categoryRepository.save(drinks);
 
         // Виды пицц
@@ -89,7 +89,7 @@ public class FillingTests {
 
         Category classicRolls = new Category();
         classicRolls.setName("Классические роллы");
-        classicRolls.setParentCategory(rolls);
+        classicRolls.setCategory(rolls);
         categoryRepository.save(classicRolls);
 
         Product philadelphia = new Product();
@@ -117,7 +117,7 @@ public class FillingTests {
 
         Category bakedRolls = new Category();
         bakedRolls.setName("Запеченые роллы");
-        bakedRolls.setParentCategory(rolls);
+        bakedRolls.setCategory(rolls);
         categoryRepository.save(bakedRolls);
 
         Product anida = new Product();
@@ -145,7 +145,7 @@ public class FillingTests {
 
         Category sweetRolls = new Category();
         sweetRolls.setName("Сладкие роллы");
-        sweetRolls.setParentCategory(rolls);
+        sweetRolls.setCategory(rolls);
         categoryRepository.save(sweetRolls);
 
         Product banana = new Product();
@@ -173,7 +173,7 @@ public class FillingTests {
 
         Category sets = new Category();
         sets.setName("Сеты роллов");
-        sets.setParentCategory(rolls);
+        sets.setCategory(rolls);
         categoryRepository.save(sets);
 
         Product ninjaHot = new Product();
@@ -201,7 +201,7 @@ public class FillingTests {
 
         Category classicBurgers = new Category();
         classicBurgers.setName("Классические бургеры");
-        classicBurgers.setParentCategory(burgers);
+        classicBurgers.setCategory(burgers);
         categoryRepository.save(classicBurgers);
 
         Product hamburger = new Product();
@@ -229,7 +229,7 @@ public class FillingTests {
 
         Category spicyBurgers = new Category();
         spicyBurgers.setName("Острые бургеры");
-        spicyBurgers.setParentCategory(burgers);
+        spicyBurgers.setCategory(burgers);
         categoryRepository.save(spicyBurgers);
 
         Product spicy = new Product();
@@ -257,7 +257,7 @@ public class FillingTests {
 
         Category carbonatedDrinks = new Category();
         carbonatedDrinks.setName("Газированные напитки");
-        carbonatedDrinks.setParentCategory(drinks);
+        carbonatedDrinks.setCategory(drinks);
         categoryRepository.save(carbonatedDrinks);
 
         Product cola = new Product();
@@ -285,7 +285,7 @@ public class FillingTests {
 
         Category energyDrinks = new Category();
         energyDrinks.setName("Энергетические напитки");
-        energyDrinks.setParentCategory(drinks);
+        energyDrinks.setCategory(drinks);
         categoryRepository.save(energyDrinks);
 
         Product burn = new Product();
@@ -313,7 +313,7 @@ public class FillingTests {
 
         Category juices = new Category();
         juices.setName("Соки");
-        juices.setParentCategory(drinks);
+        juices.setCategory(drinks);
         categoryRepository.save(juices);
 
         Product orange = new Product();
@@ -341,7 +341,7 @@ public class FillingTests {
 
         Category otherDrinks = new Category();
         otherDrinks.setName("Другие напитки");
-        otherDrinks.setParentCategory(drinks);
+        otherDrinks.setCategory(drinks);
         categoryRepository.save(otherDrinks);
 
         Product coffee = new Product();

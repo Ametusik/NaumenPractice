@@ -12,7 +12,7 @@ public class Category {
     private String name;
 
     @ManyToOne
-    private Category parentCategory;
+    private Category category;
 
     public String getName() {
         return name;
@@ -22,12 +22,12 @@ public class Category {
         this.name = name;
     }
 
-    public Category getParentCategory() {
-        return parentCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setParentCategory(Category parentCategory) {
-        this.parentCategory = parentCategory;
+    public void setCategory(Category parentCategory) {
+        this.category = parentCategory;
     }
 
     public void setId(Long id) {
