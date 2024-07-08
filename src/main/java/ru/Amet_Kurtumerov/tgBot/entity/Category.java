@@ -2,7 +2,8 @@ package ru.Amet_Kurtumerov.tgBot.entity;
 
 import jakarta.persistence.*;
 
-@Entity public class Category {
+@Entity
+public class Category {
     @Id
     @GeneratedValue
     private Long id;
