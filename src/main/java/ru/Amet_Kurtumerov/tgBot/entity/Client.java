@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 @Entity
 public class Client {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -12,13 +11,13 @@ public class Client {
     @Column(nullable = false)
     private Long externalId;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false)
     private String fullName;
 
     @Column(nullable = false, length = 15)
     private String phoneNumber;
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 400)
     private String address;
 
     public Long getId() {

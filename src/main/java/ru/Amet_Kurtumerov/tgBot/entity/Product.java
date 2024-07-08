@@ -6,20 +6,30 @@ import java.math.BigDecimal;
 
 @Entity
 public class Product {
-
-
     @Id
     @GeneratedValue
     private Long id;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Category category;
 
-    @Column(nullable = false,length = 50,unique = true)
+    @Column(nullable = false, length = 50, unique = true)
     private String name;
 
-    @Column(nullable = false,length = 400,unique = true)
+    @Column(nullable = false, length = 400)
     private String description;
+
+    @Column(nullable = false, precision = 15, scale = 2)
+    private BigDecimal price;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Category getCategory() {
         return category;
@@ -51,16 +61,5 @@ public class Product {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    @Column(precision = 15, nullable = false)
-    private BigDecimal price;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 }
