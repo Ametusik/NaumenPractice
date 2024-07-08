@@ -19,11 +19,9 @@ public class OrderProduct {
     }
 
     @ManyToOne
-    @JoinColumn(nullable = false)
     private ClientOrder clientOrder;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
     private Product product;
 
     @Column(nullable = false)

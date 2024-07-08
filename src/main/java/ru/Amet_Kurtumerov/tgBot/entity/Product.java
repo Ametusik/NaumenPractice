@@ -13,7 +13,6 @@ public class Product {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
     private Category category;
 
     @Column(nullable = false,length = 50,unique = true)

@@ -12,7 +12,6 @@ public class Category {
     private String name;
 
     @ManyToOne
-    @JoinColumn
     private Category parentCategory;
 
     public String getName() {

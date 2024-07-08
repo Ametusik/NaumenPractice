@@ -11,7 +11,6 @@ public class ClientOrder {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
     private Client client;
 
     @Column(nullable = false)
