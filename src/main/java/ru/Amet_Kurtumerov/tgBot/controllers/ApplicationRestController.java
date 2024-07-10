@@ -10,7 +10,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/rest")
 public class ApplicationRestController {
-    private EntitiesServiceImpl entitiesService;
+    private final EntitiesServiceImpl entitiesService;
+
+    public ApplicationRestController(EntitiesServiceImpl entitiesService) {
+        this.entitiesService = entitiesService;
+    }
+
+
     @GetMapping("/products/search")
     public List<Product> getProductsByCategoryId(@RequestParam Long categoryId) {
         return entitiesService.getProductsByCategoryId(categoryId);
