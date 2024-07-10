@@ -12,7 +12,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "clients", path = "clients")
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
-    @Query("select OrderProduct.product from OrderProduct " +
-            "join ClientOrder on OrderProduct.clientOrder.id = ClientOrder.id and ClientOrder .client.id = :id")
-    public List<Product> getClientOrderProducts(Long id);
+
 }
