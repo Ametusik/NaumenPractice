@@ -6,6 +6,7 @@ import ru.Amet_Kurtumerov.tgBot.entity.Product;
 import ru.Amet_Kurtumerov.tgBot.services.EntitiesServiceImpl;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/rest")
@@ -28,7 +29,7 @@ public class ApplicationRestController {
     }
 
     @GetMapping("/clients/{id}/products")
-    public List<Product> getClientProducts(@PathVariable Long id){
+    public Set<Product> getClientProducts(@PathVariable Long id){
         return entitiesService.getClientProducts(id);
     }
 
