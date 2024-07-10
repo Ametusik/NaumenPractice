@@ -69,7 +69,6 @@ public class EntitiesServiceImpl implements EntitiesService {
                 break;
             }
         }
-        topProducts.remove(0);
         return topProducts;
     }
 
