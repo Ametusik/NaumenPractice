@@ -10,7 +10,7 @@ import ru.Amet_Kurtumerov.tgBot.entity.Product;
 
 import java.util.List;
 
-@Repository
+
 @RepositoryRestResource(collectionResourceRel = "clientOrders", path = "clientOrders")
 public interface ClientOrderRepository extends JpaRepository<ClientOrder, Long> {
 

@@ -18,8 +18,6 @@ import java.util.List;
 public class EntitiesServiceImpl implements EntitiesService {
 
     @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
     private ClientOrderRepository clientOrderRepository;
     @Autowired
     private ProductRepository productRepository;
