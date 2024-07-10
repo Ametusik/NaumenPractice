@@ -49,22 +49,18 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Override
     public List<Product> getTopPopularProducts(Integer limit) {
         List<OrderProduct> allOrderProducts = orderProductRepository.findAll();
-        Map<Product, Integer> productCounts = new LinkedHashMap<>(); // Используем LinkedHashMap для сохранения порядка
+        Map<Product, Integer> productFrequency = new HashMap<>();
 
-        // Подсчет количества продуктов
         for (OrderProduct orderProduct : allOrderProducts) {
             Product product = orderProduct.getProduct();
-            productCounts.put(product, productCounts.getOrDefault(product, 0) + 1);
+            productFrequency.put(product, productFrequency.getOrDefault(product, 0) + 1);
         }
+        List<Map.Entry<Product, Integer>> sortedEntries = new ArrayList<>(productFrequency.entrySet());
+        sortedEntries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
 
-        // Создание списка entrySet и сортировка его по количеству продаж
-        List<Map.Entry<Product, Integer>> entryList = new ArrayList<>(productCounts.entrySet());
-        entryList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
-
-        // Создание списка для возвращаемого результата с сохранением порядка
         List<Product> topProducts = new ArrayList<>();
         int count = 0;
-        for (Map.Entry<Product, Integer> entry : entryList) {
+        for (Map.Entry<Product, Integer> entry : sortedEntries) {
             topProducts.add(entry.getKey());
             count++;
             if (count == limit) {
