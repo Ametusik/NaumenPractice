@@ -22,6 +22,7 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Autowired
     private ProductRepository productRepository;
 
+    
     @Transactional
     @Override
     public List<Product> getProductsByCategoryId(Long id) {
@@ -44,5 +45,10 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Override
     public List<Product> getTopPopularProducts(Integer limit) {
         return productRepository.findTopProductsOrderByOrderCountDesc(limit);
+    }
+
+    public EntitiesServiceImpl(ClientOrderRepository clientOrderRepository, ProductRepository productRepository){
+        this.productRepository = productRepository;
+        this.clientOrderRepository = clientOrderRepository;
     }
 }
