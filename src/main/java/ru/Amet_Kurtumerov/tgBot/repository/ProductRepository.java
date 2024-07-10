@@ -14,10 +14,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findProductByCategoryId(Long categoryId);
 
-    @Query("SELECT op.product " +
-            "FROM OrderProduct op " +
-            "GROUP BY op.product " +
-            "ORDER BY COUNT(op) DESC")
-    List<Product> findTopProductsOrderByOrderCountDesc(@Param("limit") Integer limit);
+
 
 }

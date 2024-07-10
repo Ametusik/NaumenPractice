@@ -6,6 +6,7 @@ import ru.Amet_Kurtumerov.tgBot.entity.Client;
 import ru.Amet_Kurtumerov.tgBot.entity.OrderProduct;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 
+import java.util.Collection;
 import java.util.List;
 
 
@@ -13,4 +14,5 @@ import java.util.List;
 public interface OrderProductRepository extends JpaRepository<OrderProduct, Long> {
 
 
+    List<OrderProduct> findAllByClientOrderId(Long id);
 }
