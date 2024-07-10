@@ -16,8 +16,4 @@ public interface ClientOrderRepository extends JpaRepository<ClientOrder, Long> 
 
     List<ClientOrder> findByClientId(Long Id);
 
-    @Query("select Product from OrderProduct op " +
-            "join ClientOrder co on op.clientOrder.id = co.id " +
-            "where co.client.id=:id")
-    public List<Product> findAllProductsByClientId(Long id);
 }
