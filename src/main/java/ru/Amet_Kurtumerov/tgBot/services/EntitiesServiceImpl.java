@@ -48,25 +48,17 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Transactional
     @Override
     public List<Product> getTopPopularProducts(Integer limit) {
-        List<OrderProduct> allOrderProducts = orderProductRepository.findAll();
-        Map<Product, Integer> productFrequency = new HashMap<>();
+        Map<Long, Integer> productCounts = orderProductRepository.findAll().stream()
+                .collect(Collectors.groupingBy(op -> op.getProduct().getId(),
+                        Collectors.summingInt(OrderProduct::getCountProduct)));
 
-        for (OrderProduct orderProduct : allOrderProducts) {
-            Product product = orderProduct.getProduct();
-            productFrequency.put(product, productFrequency.getOrDefault(product, 0) + 1);
-        }
-        List<Map.Entry<Product, Integer>> sortedEntries = new ArrayList<>(productFrequency.entrySet());
-        sortedEntries.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
-
-        List<Product> topProducts = new ArrayList<>();
-        int count = 0;
-        for (Map.Entry<Product, Integer> entry : sortedEntries) {
-            topProducts.add(entry.getKey());
-            count++;
-            if (count == limit) {
-                break;
-            }
-        }
+        List<Product> topProducts = productCounts.entrySet().stream()
+                .sorted(Map.Entry.<Long, Integer>comparingByValue(Comparator.reverseOrder()))
+                .limit(limit)
+                .map(entry -> productRepository.findById(entry.getKey())
+                        .orElse(null))
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
 
         return topProducts;
     }
