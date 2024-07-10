@@ -4,6 +4,7 @@ import ru.Amet_Kurtumerov.tgBot.entity.ClientOrder;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public interface EntitiesService {
@@ -11,7 +12,7 @@ public interface EntitiesService {
 
     List<ClientOrder> getClientOrders(Long id);
 
-    List<Product> getClientProducts(Long id);
+    Set<Product> getClientProducts(Long id);
 
     List<Product> getTopPopularProducts(Integer limit);
 }

@@ -8,10 +8,7 @@ import ru.Amet_Kurtumerov.tgBot.entity.Product;
 import ru.Amet_Kurtumerov.tgBot.repository.*;
 import ru.Amet_Kurtumerov.tgBot.entity.OrderProduct;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -40,12 +37,12 @@ public class EntitiesServiceImpl implements EntitiesService {
 
     @Transactional
     @Override
-    public List<Product> getClientProducts(Long id) {
+    public Set<Product> getClientProducts(Long id) {
        List<ClientOrder> clientOrders = clientOrderRepository.findByClientId(id);
         return clientOrders.stream()
                 .flatMap(order -> orderProductRepository.findAllByClientOrderId(order.getId()).stream())
                 .map(OrderProduct::getProduct)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
     @Transactional
