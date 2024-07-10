@@ -38,12 +38,21 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Transactional
     @Override
     public Set<Product> getClientProducts(Long id) {
-       List<ClientOrder> clientOrders = clientOrderRepository.findByClientId(id);
-        return clientOrders.stream()
-                .flatMap(order -> orderProductRepository.findAllByClientOrderId(order.getId()).stream())
-                .map(OrderProduct::getProduct)
-                .collect(Collectors.toSet());
+        Set<Product> products = new HashSet<>();
+
+        List<ClientOrder> clientOrders = clientOrderRepository.findByClientId(id);
+
+        for (ClientOrder order : clientOrders) {
+            List<OrderProduct> orderProducts = orderProductRepository.findAllByClientOrderId(order.getId());
+
+            for (OrderProduct orderProduct : orderProducts) {
+                Product product = orderProduct.getProduct();
+                products.add(product);
+            }
+        }
+        return products;
     }
+
 
     @Transactional
     @Override
