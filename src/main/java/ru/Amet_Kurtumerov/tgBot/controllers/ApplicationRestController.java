@@ -34,7 +34,7 @@ public class ApplicationRestController {
     }
 
     @GetMapping("/products/popular")
-    public List<Product> getTopPopularProducts(@RequestParam Integer limit) {
+    public Set<Product> getTopPopularProducts(@RequestParam Integer limit) {
         return entitiesService.getTopPopularProducts(limit);
     }
 

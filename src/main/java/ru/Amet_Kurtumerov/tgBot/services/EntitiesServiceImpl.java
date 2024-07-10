@@ -47,20 +47,24 @@ public class EntitiesServiceImpl implements EntitiesService {
 
     @Transactional
     @Override
-    public List<Product> getTopPopularProducts(Integer limit) {
+    public Set<Product> getTopPopularProducts(Integer limit) {
         List<OrderProduct> allOrderProducts = orderProductRepository.findAll();
         Map<Product, Integer> productCounts = new HashMap<>();
+
+        // Подсчет количества продуктов
         for (OrderProduct orderProduct : allOrderProducts) {
             Product product = orderProduct.getProduct();
-            if (productCounts.containsKey(product)) {
-                productCounts.put(product, productCounts.get(product) + 1);
-            } else {
-                productCounts.put(product, 1);
-            }
+            productCounts.put(product, productCounts.getOrDefault(product, 0) + 1);
         }
-        List<Product> topProducts = new ArrayList<>();
+
+        // Создание списка entrySet и сортировка его по количеству продаж
         List<Map.Entry<Product, Integer>> entryList = new ArrayList<>(productCounts.entrySet());
         entryList.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
+
+        // Создание множества для возвращаемого результата
+        Set<Product> topProducts = new LinkedHashSet<>(); // Используем LinkedHashSet для сохранения порядка
+
+        // Добавление топ продуктов в множество
         int count = 0;
         for (Map.Entry<Product, Integer> entry : entryList) {
             topProducts.add(entry.getKey());
@@ -69,9 +73,9 @@ public class EntitiesServiceImpl implements EntitiesService {
                 break;
             }
         }
+
         return topProducts;
     }
-
     public EntitiesServiceImpl(ClientOrderRepository clientOrderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository){
         this.productRepository = productRepository;
         this.clientOrderRepository = clientOrderRepository;

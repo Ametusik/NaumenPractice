@@ -14,5 +14,5 @@ public interface EntitiesService {
 
     Set<Product> getClientProducts(Long id);
 
-    List<Product> getTopPopularProducts(Integer limit);
+    Set<Product> getTopPopularProducts(Integer limit);
 }
