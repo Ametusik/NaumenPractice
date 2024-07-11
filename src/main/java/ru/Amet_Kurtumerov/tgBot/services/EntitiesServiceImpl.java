@@ -2,16 +2,14 @@ package ru.Amet_Kurtumerov.tgBot.services;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.Amet_Kurtumerov.tgBot.entity.ClientOrder;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 import ru.Amet_Kurtumerov.tgBot.repository.*;
-import ru.Amet_Kurtumerov.tgBot.entity.OrderProduct;
 
-import java.awt.print.Pageable;
 import java.util.*;
 import java.util.stream.Collectors;
+
 
 @Service
 @Transactional
@@ -47,8 +45,8 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Transactional
     @Override
     public List<Product> getTopPopularProducts(Integer limit) {
-        Pageable pageable = (Pageable) PageRequest.of(0, limit);
-        return orderProductRepository.findMostPopularProducts(pageable);
+        List<Product> popularProducts = orderProductRepository.findMostPopularProducts();
+        return popularProducts.stream().limit(limit).collect(Collectors.toList());
     }
 
     public EntitiesServiceImpl(ClientOrderRepository clientOrderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository){

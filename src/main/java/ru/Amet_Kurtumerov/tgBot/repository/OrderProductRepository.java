@@ -7,7 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import ru.Amet_Kurtumerov.tgBot.entity.OrderProduct;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 
@@ -28,5 +27,5 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             "    GROUP BY op.product.id " +
             "    ORDER BY COUNT(op.product.id) DESC" +
             ")")
-    List<Product> findMostPopularProducts(Pageable pageable);
+    List<Product> findMostPopularProducts();
 }
