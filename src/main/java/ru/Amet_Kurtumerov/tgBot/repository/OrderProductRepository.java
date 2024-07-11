@@ -19,13 +19,9 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             "WHERE co.client.id = :clientId")
     List<Product> findProductsByClientId(@Param("clientId") Long clientId);
 
-    @Query("SELECT p " +
-            "FROM Product p " +
-            "WHERE p.id IN (" +
-            "    SELECT op.product.id " +
-            "    FROM OrderProduct op " +
-            "    GROUP BY op.product.id " +
-            "    ORDER BY COUNT(op.product.id) DESC" +
-            ")")
+    @Query("SELECT op.product " +
+            "FROM OrderProduct op " +
+            "GROUP BY op.product " +
+            "ORDER BY SUM(op.countProduct) DESC")
     List<Product> findMostPopularProducts();
 }

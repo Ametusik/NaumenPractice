@@ -10,7 +10,6 @@ import ru.Amet_Kurtumerov.tgBot.repository.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 @Service
 @Transactional
 public class EntitiesServiceImpl implements EntitiesService {
@@ -22,7 +21,6 @@ public class EntitiesServiceImpl implements EntitiesService {
     @Autowired
     private OrderProductRepository orderProductRepository;
 
-    
     @Transactional
     @Override
     public List<Product> getProductsByCategoryId(Long id) {
@@ -41,7 +39,6 @@ public class EntitiesServiceImpl implements EntitiesService {
         return orderProductRepository.findProductsByClientId(id);
     }
 
-
     @Transactional
     @Override
     public List<Product> getTopPopularProducts(Integer limit) {
@@ -49,7 +46,7 @@ public class EntitiesServiceImpl implements EntitiesService {
         return popularProducts.stream().limit(limit).collect(Collectors.toList());
     }
 
-    public EntitiesServiceImpl(ClientOrderRepository clientOrderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository){
+    public EntitiesServiceImpl(ClientOrderRepository clientOrderRepository, ProductRepository productRepository, OrderProductRepository orderProductRepository) {
         this.productRepository = productRepository;
         this.clientOrderRepository = clientOrderRepository;
         this.orderProductRepository = orderProductRepository;
