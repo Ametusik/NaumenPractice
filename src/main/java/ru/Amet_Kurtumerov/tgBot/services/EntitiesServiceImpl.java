@@ -61,4 +61,24 @@ public class EntitiesServiceImpl implements EntitiesService {
     public List<Category> getRootCategories(){
         return  categoryRepository.findAllByParentIsNull();
     }
+
+    @Transactional
+    public List<Category>findCategoriesByParent(Category category){
+        return categoryRepository.findCategoriesByParent(category);
+    };
+
+    @Transactional
+    public Category findCategoryById(Long id){
+        return categoryRepository.findCategoriesById(id);
+    }
+
+    @Transactional
+    public Product findProductByName(String name){
+        return productRepository.findByName(name);
+    };
+
+    @Transactional
+    public Product findProductById(Long id){
+        return productRepository.findProductById(id);
+    };
 }

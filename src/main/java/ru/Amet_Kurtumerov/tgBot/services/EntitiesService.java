@@ -59,4 +59,12 @@ public interface EntitiesService {
     }
 
     List<Category> getRootCategories();
+
+    List<Category>findCategoriesByParent(Category category);
+
+    Category findCategoryById(Long id);
+
+    Product findProductByName(String name);
+
+    Product findProductById(Long id);
 }
