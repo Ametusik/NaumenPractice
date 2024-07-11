@@ -12,4 +12,5 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "clients", path = "clients")
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
+    Client findByExternalId(long Id);
 }
