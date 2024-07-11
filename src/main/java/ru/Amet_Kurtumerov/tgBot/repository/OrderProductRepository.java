@@ -1,5 +1,6 @@
 package ru.Amet_Kurtumerov.tgBot.repository;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -22,5 +23,5 @@ public interface OrderProductRepository extends JpaRepository<OrderProduct, Long
             "FROM OrderProduct op " +
             "GROUP BY op.product " +
             "ORDER BY SUM(op.countProduct) DESC")
-    List<Product> findMostPopularProducts();
+    List<Product> findMostPopularProducts(Pageable pageable);
 }

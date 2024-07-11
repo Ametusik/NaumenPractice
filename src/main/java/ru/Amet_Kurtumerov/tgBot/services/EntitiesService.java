@@ -1,13 +1,18 @@
 package ru.Amet_Kurtumerov.tgBot.services;
-import org.springframework.stereotype.Service;
+import ru.Amet_Kurtumerov.tgBot.entity.Client;
 import ru.Amet_Kurtumerov.tgBot.entity.ClientOrder;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 
 import java.util.List;
-import java.util.Set;
-
-@Service
-public interface EntitiesService {
+/**
+ * Сервис для работы с сущностями телеграмм-бота
+ */
+public interface EntitiesService
+{
+    /**
+     * Получить список товаров в категории
+     * @param id идентификатор категории
+     */
     List<Product> getProductsByCategoryId(Long id);
     /**
      * Получить список заказов клиента
@@ -25,4 +30,18 @@ public interface EntitiesService {
      * @param limit максимальное кол-во товаров
      */
     List<Product> getTopPopularProducts(Integer limit);
+    /**
+     * Найти всех клиентов по подстроке имени
+     * @param name подстрока имени клиента
+     */
+    default List<Client> searchClientsByName(String name) {
+        throw new UnsupportedOperationException("Доп. задание");
+    }
+    /**
+     * Найти все продукты по подстроке названия
+     * @param name подстрока названия продукта
+     */
+    default List<Product> searchProductsByName(String name) {
+        throw new UnsupportedOperationException("Доп. задание");
+    }
 }
