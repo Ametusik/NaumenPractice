@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import ru.Amet_Kurtumerov.tgBot.entity.Category;
 import ru.Amet_Kurtumerov.tgBot.entity.ClientOrder;
 import ru.Amet_Kurtumerov.tgBot.entity.Product;
 import ru.Amet_Kurtumerov.tgBot.repository.*;
@@ -21,6 +22,8 @@ public class EntitiesServiceImpl implements EntitiesService {
     private ProductRepository productRepository;
     @Autowired
     private OrderProductRepository orderProductRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Transactional
     @Override
@@ -52,5 +55,10 @@ public class EntitiesServiceImpl implements EntitiesService {
         this.productRepository = productRepository;
         this.clientOrderRepository = clientOrderRepository;
         this.orderProductRepository = orderProductRepository;
+    }
+
+    @Transactional
+    public List<Category> getRootCategories(){
+        return  categoryRepository.findAllByParentIsNull();
     }
 }
