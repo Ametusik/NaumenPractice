@@ -29,7 +29,7 @@ public class ApplicationRestController {
     }
 
     @GetMapping("/clients/{id}/products")
-    public Set<Product> getClientProducts(@PathVariable Long id){
+    public List<Product> getClientProducts(@PathVariable Long id){
         return entitiesService.getClientProducts(id);
     }
 

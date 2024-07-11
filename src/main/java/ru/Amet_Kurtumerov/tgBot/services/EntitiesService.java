@@ -9,10 +9,20 @@ import java.util.Set;
 @Service
 public interface EntitiesService {
     List<Product> getProductsByCategoryId(Long id);
-
+    /**
+     * Получить список заказов клиента
+     * @param id идентификатор клиента
+     */
     List<ClientOrder> getClientOrders(Long id);
-
-    Set<Product> getClientProducts(Long id);
-
+    /**
+     * Получить список всех товаров во всех заказах клиента
+     * @param id идентификатор клиента
+     */
+    List<Product> getClientProducts(Long id);
+    /**
+     * Получить указанное кол-во самых популярных (наибольшее
+     * количество штук в заказах) товаров среди клиентов
+     * @param limit максимальное кол-во товаров
+     */
     List<Product> getTopPopularProducts(Integer limit);
 }
